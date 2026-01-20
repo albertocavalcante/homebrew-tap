@@ -8,7 +8,7 @@ class Bossa < Formula
   depends_on :macos
 
   url "https://github.com/albertocavalcante/bossa/releases/download/v#{version}/bossa-darwin-arm64.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "e24bce27338aea8291858dbde10e581d47be9ce9c745c4c61eaeb2f01ef6e159"
 
   def install
     bin.install "bossa"
