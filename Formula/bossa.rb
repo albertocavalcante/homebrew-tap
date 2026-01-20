@@ -1,7 +1,7 @@
 class Bossa < Formula
   desc "Unified CLI for managing dev environment - workspaces, refs, packages"
   homepage "https://github.com/albertocavalcante/bossa"
-  version "0.3.0"
+  version "0.1.0"
   license "MIT"
 
   depends_on arch: :arm64
