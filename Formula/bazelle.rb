@@ -7,22 +7,22 @@ class Bazelle < Formula
   on_macos do
     on_arm do
       url "https://github.com/albertocavalcante/bazelle/releases/download/v#{version}/bazelle-darwin-arm64.tar.gz"
-      sha256 "TBD_DARWIN_ARM64_SHA256"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     end
     on_intel do
       url "https://github.com/albertocavalcante/bazelle/releases/download/v#{version}/bazelle-darwin-amd64.tar.gz"
-      sha256 "TBD_DARWIN_AMD64_SHA256"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/albertocavalcante/bazelle/releases/download/v#{version}/bazelle-linux-arm64.tar.gz"
-      sha256 "TBD_LINUX_ARM64_SHA256"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     end
     on_intel do
       url "https://github.com/albertocavalcante/bazelle/releases/download/v#{version}/bazelle-linux-amd64.tar.gz"
-      sha256 "TBD_LINUX_AMD64_SHA256"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
     end
   end
 
