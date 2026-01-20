@@ -1,0 +1,25 @@
+# Lefthook - Git Hooks Manager
+# https://github.com/evilmartians/lefthook
+#
+# Install: brew install lefthook && lefthook install
+
+pre-commit:
+  commands:
+    dprint-check:
+      glob: "**/*.{md,json,yml,yaml}"
+      run: dprint check {staged_files}
+
+    ruby-syntax:
+      glob: "**/*.rb"
+      run: ruby -c {staged_files}
+
+commit-msg:
+  commands:
+    conventional-commit:
+      run: |
+        commit_msg=$(head -n1 {1})
+        if ! echo "$commit_msg" | grep -qE "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([^)]+\))?!?: .+$"; then
+          echo "Error: Commit message does not follow conventional commits format."
+          echo "Example: feat(bazelle): update formula to v0.2.0"
+          exit 1
+        fi

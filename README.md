@@ -43,6 +43,22 @@ gls --version
 brew upgrade gls
 ```
 
+## Development
+
+```bash
+# Install dev tools
+brew install dprint lefthook
+
+# Setup git hooks
+lefthook install
+
+# Format files
+dprint fmt
+
+# Check formatting
+dprint check
+```
+
 ## Links
 
 - [bazelle](https://github.com/albertocavalcante/bazelle) - Polyglot Gazelle CLI
