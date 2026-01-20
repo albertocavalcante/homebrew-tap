@@ -9,9 +9,13 @@ pre-commit:
       glob: "**/*.{md,json,yml,yaml}"
       run: dprint check {staged_files}
 
-    ruby-syntax:
-      glob: "**/*.rb"
-      run: ruby -c {staged_files}
+    brew-style:
+      glob: "Formula/*.rb"
+      run: brew style {staged_files}
+
+    brew-audit:
+      glob: "Formula/*.rb"
+      run: brew audit --formula {staged_files}
 
 commit-msg:
   commands:
