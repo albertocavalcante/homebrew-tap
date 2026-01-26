@@ -16,15 +16,21 @@ pre-commit:
     brew-audit:
       glob: "Formula/*.rb"
       run: |
+        # Create temporary tap for auditing local formulas
+        brew tap-new --no-git lefthook/audit 2>/dev/null || true
+        TAP_DIR="$(brew --repository lefthook/audit)/Formula"
+        mkdir -p "$TAP_DIR"
+        trap "brew untap lefthook/audit 2>/dev/null || true" EXIT
+        exit_code=0
         for f in {staged_files}; do
-          name=$(basename "$f" .rb)
-          # Skip if formula not yet in tap (new formulas)
-          if brew info --formula "albertocavalcante/tap/$name" &>/dev/null; then
-            brew audit --formula "albertocavalcante/tap/$name"
-          else
-            echo "Skipping audit for new formula: $name"
+          name=$(basename "$f")
+          formula=$(basename "$name" .rb)
+          cp "$f" "$TAP_DIR/$name"
+          if ! brew audit --formula "lefthook/audit/$formula"; then
+            exit_code=1
           fi
         done
+        exit $exit_code
 
     workflow-lint:
       glob: ".github/workflows/*.{yml,yaml}"
