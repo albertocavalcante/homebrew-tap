@@ -10,10 +10,10 @@ brew tap albertocavalcante/tap
 
 ## Available Formulas
 
-| Formula | Description | Install |
-|---------|-------------|---------|
+| Formula     | Description                                          | Install                                      |
+| ----------- | ---------------------------------------------------- | -------------------------------------------- |
 | **bazelle** | Polyglot Gazelle CLI for Bazel BUILD file generation | `brew install albertocavalcante/tap/bazelle` |
-| **gls** | Modern Groovy Language Server | `brew install albertocavalcante/tap/gls` |
+| **gls**     | Modern Groovy Language Server                        | `brew install albertocavalcante/tap/gls`     |
 
 ## Usage
 

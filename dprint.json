@@ -5,7 +5,7 @@
   "plugins": [
     "https://plugins.dprint.dev/markdown-0.17.8.wasm",
     "https://plugins.dprint.dev/json-0.19.4.wasm",
-    "https://plugins.dprint.dev/prettier-0.46.1.json@dc17a34d93e0a3a38fd66bc349132ee4f4d90712e2583a92a86ad9e661333e52"
+    "https://plugins.dprint.dev/prettier-0.46.1.json@e5bd083088a8dfc6e5ce2d3c9bee81489b065bd5345ef55b59f5d96627928b7a"
   ],
   "markdown": {
     "lineWidth": 100

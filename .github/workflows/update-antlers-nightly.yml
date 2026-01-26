@@ -1,0 +1,80 @@
+name: Update antlers-nightly Formula
+
+on:
+  # Triggered from antlers repo when nightly is published
+  repository_dispatch:
+    types: [antlers-nightly-released]
+
+  # Fallback: daily check at 7am UTC
+  schedule:
+    - cron: "0 7 * * *"
+
+  # Manual trigger
+  workflow_dispatch:
+
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout tap
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Get SHA256 hashes
+        id: hashes
+        run: |
+          echo "Fetching SHA256 hashes for nightly artifacts..."
+
+          DARWIN_ARM64_SHA=$(curl -sfL https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-darwin-arm64.tar.gz | sha256sum | cut -d' ' -f1)
+          DARWIN_AMD64_SHA=$(curl -sfL https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-darwin-amd64.tar.gz | sha256sum | cut -d' ' -f1)
+          LINUX_ARM64_SHA=$(curl -sfL https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-linux-aarch64.tar.gz | sha256sum | cut -d' ' -f1)
+          LINUX_AMD64_SHA=$(curl -sfL https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-linux-amd64.tar.gz | sha256sum | cut -d' ' -f1)
+
+          echo "darwin_arm64=$DARWIN_ARM64_SHA" >> $GITHUB_OUTPUT
+          echo "darwin_amd64=$DARWIN_AMD64_SHA" >> $GITHUB_OUTPUT
+          echo "linux_arm64=$LINUX_ARM64_SHA" >> $GITHUB_OUTPUT
+          echo "linux_amd64=$LINUX_AMD64_SHA" >> $GITHUB_OUTPUT
+
+          echo "Darwin ARM64: $DARWIN_ARM64_SHA"
+          echo "Darwin AMD64: $DARWIN_AMD64_SHA"
+          echo "Linux ARM64:  $LINUX_ARM64_SHA"
+          echo "Linux AMD64:  $LINUX_AMD64_SHA"
+
+      - name: Update formula
+        run: |
+          FORMULA="Formula/antlers-nightly.rb"
+
+          # Update each SHA256 using the comment markers
+          sed -i 's/sha256 "[a-f0-9]\{64\}" # darwin-arm64/sha256 "${{ steps.hashes.outputs.darwin_arm64 }}" # darwin-arm64/' "$FORMULA"
+          sed -i 's/sha256 "[a-f0-9]\{64\}" # darwin-amd64/sha256 "${{ steps.hashes.outputs.darwin_amd64 }}" # darwin-amd64/' "$FORMULA"
+          sed -i 's/sha256 "[a-f0-9]\{64\}" # linux-arm64/sha256 "${{ steps.hashes.outputs.linux_arm64 }}" # linux-arm64/' "$FORMULA"
+          sed -i 's/sha256 "[a-f0-9]\{64\}" # linux-amd64/sha256 "${{ steps.hashes.outputs.linux_amd64 }}" # linux-amd64/' "$FORMULA"
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet Formula/antlers-nightly.rb; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected - nightly is already up to date"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected:"
+            git diff Formula/antlers-nightly.rb
+          fi
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+          git add Formula/antlers-nightly.rb
+          git commit -m "chore(antlers-nightly): update SHA256 hashes [$(date -u +%Y-%m-%d)]"
+          git push
