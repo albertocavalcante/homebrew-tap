@@ -1,27 +1,27 @@
 class AntlersNightly < Formula
   desc "Polyglot native dependency resolver for JVM ecosystems (nightly build)"
   homepage "https://github.com/albertocavalcante/antlers"
-  version "nightly-5d88d1a"
+  version "nightly-aac4a2f"
   license any_of: ["Apache-2.0", "MIT"]
 
   # Auto-updated by CI - do not edit manually
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-darwin-arm64.tar.gz"
-      sha256 "b2e7990d4242d158f194770c43aa5cf5cef1dbb56aa177b023f710184bded21a"
+      sha256 "2e158feb79ef3150e5ba1627363761da2e6cfc528e76a8676357c00e1cecf082"
     else
       url "https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-darwin-amd64.tar.gz"
-      sha256 "ecb923d48f24c462f50dc35f265143439e7c844839839a1139dc20c2d1c9f02b"
+      sha256 "5e1cb9730098745e7375e74d240ec5518c65b5211ab23ee3ace90deeffe29f7b"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-linux-aarch64.tar.gz"
-      sha256 "56cb7c08a3b9723cddb6b63f08fe3f32775ea123f6c27b85a72b6d42319a5096"
+      sha256 "fde7ec97d71b9719ab4823efbf3f8d871bb54d8041d675b1a8dd895bb348a426"
     else
       url "https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-linux-amd64.tar.gz"
-      sha256 "9121098af6725f1bff35407ebcbe2e5ef2e96ff573c61bafa8268f0fc4374bbf"
+      sha256 "ad9c784d4a928675768bc703c42068bd11dfefede94ab69e4ecca113912198e8"
     end
   end
 
