@@ -15,6 +15,10 @@ pre-commit:
 
     brew-audit:
       glob: "Formula/*.rb"
+      # NOTE: `brew audit [path]` is disabled, must use formula names from a tap.
+      # Workaround: create a temporary tap and copy formulas for auditing.
+      # See: https://github.com/orgs/Homebrew/discussions/4864
+      # See: https://github.com/orgs/Homebrew/discussions/4243
       run: |
         # Create temporary tap for auditing local formulas
         brew tap-new --no-git lefthook/audit 2>/dev/null || true
