@@ -16,7 +16,7 @@ brew tap albertocavalcante/tap
 | **antlers-nightly** | Antlers nightly build (prebuilt binaries, auto-updated)                  | `brew install albertocavalcante/tap/antlers-nightly` |
 | **bazelle**         | Polyglot Gazelle CLI for Bazel BUILD file generation                     | `brew install albertocavalcante/tap/bazelle`         |
 | **bossa**           | Unified CLI for managing dev environment - workspaces, refs, packages    | `brew install albertocavalcante/tap/bossa`           |
-| **gls**             | Modern Groovy Language Server                                            | `brew install albertocavalcante/tap/gls`             |
+| **gvy**             | Tools for Apache Groovy (Language Server, utilities)                     | `brew install albertocavalcante/tap/gvy`             |
 | **gomodfmt**        | Opinionated formatter for go.mod files                                   | `brew install albertocavalcante/tap/gomodfmt`        |
 | **katharsis**       | macOS menu bar app that purifies external drives of AppleDouble metadata | `brew install albertocavalcante/tap/katharsis`       |
 
@@ -53,11 +53,11 @@ brew install albertocavalcante/tap/bossa
 bossa --help
 ```
 
-### gls
+### gvy
 
 ```bash
-brew install albertocavalcante/tap/gls
-gls --version
+brew install albertocavalcante/tap/gvy
+gvy --version
 ```
 
 ### gomodfmt
@@ -99,6 +99,6 @@ pinact run --verify -c tools/lint/pinact.yaml
 - [antlers](https://github.com/albertocavalcante/antlers) - Native JVM dependency resolver
 - [bazelle](https://github.com/albertocavalcante/bazelle) - Polyglot Gazelle CLI
 - [bossa](https://github.com/albertocavalcante/bossa) - Dev environment CLI
-- [groovy-devtools](https://github.com/albertocavalcante/groovy-devtools) - Groovy Language Server
+- [gvy](https://github.com/albertocavalcante/gvy) - Tools for Apache Groovy
 - [gomodfmt](https://github.com/albertocavalcante/gomodfmt) - go.mod formatter
 - [katharsis](https://github.com/albertocavalcante/katharsis) - AppleDouble metadata cleaner
