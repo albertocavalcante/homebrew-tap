@@ -1,6 +1,6 @@
 # Homebrew Tap
 
-Homebrew tap for developer tools by [@albertocavalcante](https://github.com/albertocavalcante).
+Homebrew tap for tools and apps by [@albertocavalcante](https://github.com/albertocavalcante).
 
 ## Installation
 
