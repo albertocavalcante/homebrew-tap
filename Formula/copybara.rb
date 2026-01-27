@@ -1,7 +1,7 @@
 class Copybara < Formula
   desc "Tool for transforming and moving code between repositories"
   homepage "https://github.com/google/copybara"
-  version "20260127-alberto.native-image.2"
+  version "20260127-alberto.native-image.3"
   license "Apache-2.0"
 
   # Native binaries from fork with GraalVM Native Image
@@ -9,20 +9,20 @@ class Copybara < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-darwin-arm64.gz"
-      sha256 "c45e2758ac0242b43e46a1b2fcecb7b4593ebb770bbf14738d48ad024ed43858"
+      sha256 "f7053c621b231ec186f50da672e0d733daca90f867cdf79a398031ee4faf1035"
     else
       url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-darwin-x64.gz"
-      sha256 "aafee57c2eae7f8e29d5eea17e2b35d9d45bbe6bf7c015eb0e625615f9b3b454"
+      sha256 "ef1c9ab58d7aa04d9a943107785d4381d6ee5a1d1482baf10d4fe8b6421e2e84"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-linux-arm64.gz"
-      sha256 "832f08c628bab18b789cce8f694086e80814eaeb448e18379b885a9e218482b7"
+      sha256 "91dae90fe9720cc96ab67c6e72ebfe62379c2421ddd7177443debc3ce0e7b0ab"
     else
       url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-linux-x64.gz"
-      sha256 "97fdd30c895bc92bd5bd3a0b932a91911cc11048b6823ae266d5afb612bb4ec9"
+      sha256 "7c3568554f8aa35998499784c8c454c6bbf35d5c33f7ed0796c68b9b598005bf"
     end
   end
 
