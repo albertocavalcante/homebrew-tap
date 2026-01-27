@@ -7,22 +7,18 @@ class Copybara < Formula
   # Native binaries from fork with GraalVM Native Image
   # Auto-updated by CI - do not edit manually
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-darwin-arm64.gz"
-      sha256 "85ddd557fc8a3707d3e97a01b499c1f3f932e87f0f0dbf1d94a4e184c543f61a"
-    else
-      url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-darwin-x64.gz"
-      sha256 "ca25ce803a25a0057b3bc0398ce17d142ca9f6e6e2b714e0f9a174033cc1cb63"
-    end
+    # Only Apple Silicon supported - Intel Macs can use Rosetta 2
+    url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-darwin-arm64.gz"
+    sha256 "aeba6ec9f30243eb672a51d3b167cf2c732148161e9b509094384a8407a6802c"
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-linux-arm64.gz"
-      sha256 "73724c73183d4a7915b5d8436bea7b20e677975731efb440e3a61752436ce866"
+      sha256 "6ecde34d45d0acd9b1213bd751a557b9aeab5984067fe2e29a70fc5e366b4c0a"
     else
       url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-linux-x64.gz"
-      sha256 "b756b11ac5fbda9c727e8728fcb2a35efcc8fe98962d5191f2ad740c0d05dab9"
+      sha256 "55de3f4173fe1ce83f459dd01fcc7e7df71701dc539ea7ce63368665887b0ea0"
     end
   end
 
