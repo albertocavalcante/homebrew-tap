@@ -15,6 +15,8 @@ brew tap albertocavalcante/tap
 | **antlers**         | Polyglot native dependency resolver for JVM ecosystems                   | `brew install albertocavalcante/tap/antlers`         |
 | **antlers-nightly** | Antlers nightly build (prebuilt binaries, auto-updated)                  | `brew install albertocavalcante/tap/antlers-nightly` |
 | **bazelle**         | Polyglot Gazelle CLI for Bazel BUILD file generation                     | `brew install albertocavalcante/tap/bazelle`         |
+| **rebaze**          | CLI tool to migrate projects to Bazel                                    | `brew install albertocavalcante/tap/rebaze`          |
+| **rebaze-nightly**  | Rebaze nightly build (prebuilt binaries, auto-updated)                   | `brew install albertocavalcante/tap/rebaze-nightly`  |
 | **bossa**           | Unified CLI for managing dev environment - workspaces, refs, packages    | `brew install albertocavalcante/tap/bossa`           |
 | **gvy**             | Tools for Apache Groovy (Language Server, utilities)                     | `brew install albertocavalcante/tap/gvy`             |
 | **gomodfmt**        | Opinionated formatter for go.mod files                                   | `brew install albertocavalcante/tap/gomodfmt`        |
@@ -37,6 +39,23 @@ atl --help  # alias
 
 # Update
 brew upgrade antlers
+```
+
+### rebaze
+
+```bash
+# Install stable (builds from source)
+brew install albertocavalcante/tap/rebaze
+
+# Or install nightly (prebuilt binaries)
+brew install albertocavalcante/tap/rebaze-nightly
+
+# Run
+rebaze --help
+rebaze analyze /path/to/project
+
+# Update
+brew upgrade rebaze
 ```
 
 ### bazelle
@@ -102,3 +121,4 @@ pinact run --verify -c tools/lint/pinact.yaml
 - [gvy](https://github.com/albertocavalcante/gvy) - Tools for Apache Groovy
 - [gomodfmt](https://github.com/albertocavalcante/gomodfmt) - go.mod formatter
 - [katharsis](https://github.com/albertocavalcante/katharsis) - AppleDouble metadata cleaner
+- [rebaze](https://github.com/albertocavalcante/rebaze) - Build system migration tool
