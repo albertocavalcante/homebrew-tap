@@ -9,16 +9,16 @@ class Copybara < Formula
   on_macos do
     # Only Apple Silicon supported - Intel Macs can use Rosetta 2
     url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-darwin-arm64.gz"
-    sha256 "aeba6ec9f30243eb672a51d3b167cf2c732148161e9b509094384a8407a6802c"
+    sha256 "55f0825fc70a05e4b2745457388b52f7b54de66e875f1de8381f8af4db5336dd"
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-linux-arm64.gz"
-      sha256 "6ecde34d45d0acd9b1213bd751a557b9aeab5984067fe2e29a70fc5e366b4c0a"
+      sha256 "46ee60ec2ecca48591f3a85cc9a5e52a313518776fe4d25eb97cde82e1e74ec2"
     else
       url "https://github.com/albertocavalcante/fork-copybara/releases/download/v#{version}/copybara-linux-x64.gz"
-      sha256 "55de3f4173fe1ce83f459dd01fcc7e7df71701dc539ea7ce63368665887b0ea0"
+      sha256 "b86c01cbe92a33e68d4ff7e90e44b168edc36612b009aeb4ad9ca7ff5f14c6b2"
     end
   end
 
