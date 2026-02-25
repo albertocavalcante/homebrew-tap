@@ -8,20 +8,20 @@ class AntlersNightly < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-darwin-arm64.tar.gz"
-      sha256 "53a53160716093d2d9f950e7f33fd92b0f9cc06a19631a43f3d53b3d9eff4e9a"
+      sha256 "d17f222eddc624c0779e5fc9d5843ac876f7863c3eeae613db152ff68956d053"
     else
       url "https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-darwin-amd64.tar.gz"
-      sha256 "44243b750d4f14f3c53b254e72b0e2dd86de4d7d28bc12eec45521a071401a56"
+      sha256 "2eb57aacd681b2c2356765b2c2be15f6589b2a302435ba862449bf5d29b569df"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-linux-aarch64.tar.gz"
-      sha256 "a346e29c525de415e1ff722f0834a6d709f55b052b83b222d1924c4586fc59f2"
+      sha256 "c0bf00208842157c70ee56e0fa2e758d00797dbd82762123ec716944e01a1dfe"
     else
       url "https://github.com/albertocavalcante/antlers/releases/download/nightly/antlers-linux-amd64.tar.gz"
-      sha256 "b75178f3a7b97f68cbb05c60d3436e934a7ab7b8df4cda53a5ca8aa1cd020477"
+      sha256 "2ff3f8a581f758a532def7b44b7a75a419d9e6246b000f6e943da0ab8315a57c"
     end
   end
 
