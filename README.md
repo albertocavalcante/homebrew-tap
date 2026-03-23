@@ -24,6 +24,7 @@ brew tap albertocavalcante/tap
 | **copybara**        | Tool for transforming and moving code between repositories               | `brew install albertocavalcante/tap/copybara`        |
 | **katharsis**       | macOS menu bar app that purifies external drives of AppleDouble metadata | `brew install albertocavalcante/tap/katharsis`       |
 | **slack**           | CLI using xoxc/cookie browser session auth                               | `brew install albertocavalcante/tap/slack`           |
+| **tfc**             | Automation CLI for HCP Terraform and Terraform Cloud                     | `brew install albertocavalcante/tap/tfc`             |
 
 ## Usage
 
@@ -127,6 +128,19 @@ slack history CRH3QF91B -n 20
 slack search "deploy failed"
 ```
 
+### tfc
+
+```bash
+brew install albertocavalcante/tap/tfc
+tfc help
+```
+
+Current caveat:
+
+- this formula builds from the Git source repo
+- `tfc` is private right now, so installs require GitHub access on the machine
+  running Homebrew
+
 ## Development
 
 ```bash
@@ -159,3 +173,4 @@ pinact run --verify -c tools/lint/pinact.yaml
 - [copybara](https://github.com/google/copybara) - Code transformation tool (native binaries from fork)
 - [rebaze](https://github.com/albertocavalcante/rebaze) - Build system migration tool
 - [slack-cli](https://github.com/albertocavalcante/slack-cli) - Slack CLI with browser session auth
+- [tfc](https://github.com/albertocavalcante/tfc) - Terraform Cloud automation CLI
