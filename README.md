@@ -20,6 +20,7 @@ brew tap albertocavalcante/tap
 | **bossa**           | Unified CLI for managing dev environment - workspaces, refs, packages    | `brew install albertocavalcante/tap/bossa`           |
 | **gvy**             | Tools for Apache Groovy (Language Server, utilities)                     | `brew install albertocavalcante/tap/gvy`             |
 | **gomodfmt**        | Opinionated formatter for go.mod files                                   | `brew install albertocavalcante/tap/gomodfmt`        |
+| **mdxfmt-nightly**  | MDX/Markdown formatter (nightly build, prebuilt binaries, auto-updated)  | `brew install albertocavalcante/tap/mdxfmt-nightly`  |
 | **copybara**        | Tool for transforming and moving code between repositories               | `brew install albertocavalcante/tap/copybara`        |
 | **katharsis**       | macOS menu bar app that purifies external drives of AppleDouble metadata | `brew install albertocavalcante/tap/katharsis`       |
 | **slack**           | CLI using xoxc/cookie browser session auth                               | `brew install albertocavalcante/tap/slack`           |
@@ -88,6 +89,21 @@ brew install albertocavalcante/tap/gomodfmt
 gomodfmt --help
 ```
 
+### mdxfmt
+
+```bash
+# Install nightly (prebuilt binaries)
+brew install albertocavalcante/tap/mdxfmt-nightly
+
+# Format files
+mdxfmt -w .
+mdxfmt -l .
+mdxfmt -d file.md
+
+# Update
+brew upgrade mdxfmt-nightly
+```
+
 ### copybara
 
 ```bash
@@ -138,6 +154,7 @@ pinact run --verify -c tools/lint/pinact.yaml
 - [bossa](https://github.com/albertocavalcante/bossa) - Dev environment CLI
 - [gvy](https://github.com/albertocavalcante/gvy) - Tools for Apache Groovy
 - [gomodfmt](https://github.com/albertocavalcante/gomodfmt) - go.mod formatter
+- [mdxfmt](https://github.com/albertocavalcante/mdxfmt) - MDX/Markdown formatter
 - [katharsis](https://github.com/albertocavalcante/katharsis) - AppleDouble metadata cleaner
 - [copybara](https://github.com/google/copybara) - Code transformation tool (native binaries from fork)
 - [rebaze](https://github.com/albertocavalcante/rebaze) - Build system migration tool
