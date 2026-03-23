@@ -23,6 +23,7 @@ brew tap albertocavalcante/tap
 | **mdxfmt-nightly**  | MDX/Markdown formatter (nightly build, prebuilt binaries, auto-updated)  | `brew install albertocavalcante/tap/mdxfmt-nightly`  |
 | **copybara**        | Tool for transforming and moving code between repositories               | `brew install albertocavalcante/tap/copybara`        |
 | **katharsis**       | macOS menu bar app that purifies external drives of AppleDouble metadata | `brew install albertocavalcante/tap/katharsis`       |
+| **reapictl**        | Provider-neutral CLI for debugging Remote Execution API deployments      | `brew install albertocavalcante/tap/reapictl`        |
 | **slack**           | CLI using xoxc/cookie browser session auth                               | `brew install albertocavalcante/tap/slack`           |
 | **tfc**             | Automation CLI for HCP Terraform and Terraform Cloud                     | `brew install albertocavalcante/tap/tfc`             |
 
@@ -128,6 +129,20 @@ slack history CRH3QF91B -n 20
 slack search "deploy failed"
 ```
 
+### reapictl
+
+```bash
+brew install albertocavalcante/tap/reapictl
+reapictl version
+reapictl doctor --endpoint grpcs://example.invalid:443
+```
+
+Current caveat:
+
+- this formula builds from the Git source repo
+- `reapictl` is private right now, so installs require GitHub access on the
+  machine running Homebrew
+
 ### tfc
 
 ```bash
@@ -170,6 +185,7 @@ pinact run --verify -c tools/lint/pinact.yaml
 - [gomodfmt](https://github.com/albertocavalcante/gomodfmt) - go.mod formatter
 - [mdxfmt](https://github.com/albertocavalcante/mdxfmt) - MDX/Markdown formatter
 - [katharsis](https://github.com/albertocavalcante/katharsis) - AppleDouble metadata cleaner
+- [reapictl](https://github.com/albertocavalcante/reapictl) - REAPI operator and debugging CLI
 - [copybara](https://github.com/google/copybara) - Code transformation tool (native binaries from fork)
 - [rebaze](https://github.com/albertocavalcante/rebaze) - Build system migration tool
 - [slack-cli](https://github.com/albertocavalcante/slack-cli) - Slack CLI with browser session auth
