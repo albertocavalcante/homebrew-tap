@@ -1,0 +1,11 @@
+# Trust policy for octo-sts OIDC federation.
+# Grants the doczel nightly workflow a short-lived token scoped to
+# contents:write on this repo (homebrew-tap) — no stored secrets needed.
+#
+# See: https://github.com/octo-sts/app
+
+issuer: https://token.actions.githubusercontent.com
+subject: repo:albertocavalcante/doczel:ref:refs/heads/main
+
+permissions:
+  contents: write
