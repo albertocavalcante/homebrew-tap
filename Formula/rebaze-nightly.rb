@@ -1,7 +1,7 @@
 class RebazeNightly < Formula
   desc "CLI tool to migrate projects to Bazel (nightly build)"
   homepage "https://github.com/albertocavalcante/rebaze"
-  version "nightly-7498b7a"
+  version "nightly-121ff92"
   license "Apache-2.0"
 
   # Private repository - requires HOMEBREW_GITHUB_API_TOKEN environment variable
@@ -11,11 +11,11 @@ class RebazeNightly < Formula
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/rebaze/releases/download/nightly/rebaze-darwin-arm64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "0a7efc84f98e9090f06821e45e7a443f34a626de8f47ae83bbce46fb083029c6"
+      sha256 "28b7763a43c34141a091a707a71a1ef9bfd6cd478900ed7580d1124959d15ee8"
     else
       url "https://github.com/albertocavalcante/rebaze/releases/download/nightly/rebaze-darwin-amd64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "a0751b8f736adec047ff70b61ddd330b8b7b453c7b8d4661c816697c7a703d27"
+      sha256 "284fcd6fe37a203aa7f70978d4686621d19fc9c4fffeb0c180fc29faf98561c7"
     end
   end
 
@@ -23,11 +23,11 @@ class RebazeNightly < Formula
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/rebaze/releases/download/nightly/rebaze-linux-aarch64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "657593a5398e6de1dac5adfbd8ab16d6d67c4a826c202849f7dcc7cb55482770"
+      sha256 "9df747fdf2ac10c65ced5f81dc79a5d3b194e985722b18ca7899a4162d03b9bf"
     else
       url "https://github.com/albertocavalcante/rebaze/releases/download/nightly/rebaze-linux-amd64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "c5c64768960f6539527df9b45fb082938b06f9da2e6321044c519d4dcbc8b9a2"
+      sha256 "93a387fbf8fe9663b690492e2c6af8a07083d21a0cb118382e78820e854a5514"
     end
   end
 
