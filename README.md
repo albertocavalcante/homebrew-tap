@@ -81,8 +81,16 @@ bossa --help
 
 ```bash
 brew install albertocavalcante/tap/gvy
-gvy --version
+gvy-install-extension          # auto-detect VS Code, Cursor, or VSCodium
+gvy-install-extension cursor   # choose an editor explicitly
+gvy version                   # inspect the standalone server
 ```
+
+The formula installs Java 17, the standalone server, and the released VSIX. Homebrew verifies both artifact checksums; no source build or Node installation is needed. The helper installs only into the selected editor and leaves Java/editor settings unchanged. Enable the editor’s shell command if it is not on PATH.
+
+For another LSP client, use `gvy` as the server command (stdio). To update, run `brew update`, `brew upgrade gvy`, and `gvy-install-extension` again. Keep a previous VSIX if you need an editor rollback; uninstalling the formula does not uninstall the extension from your editor.
+
+Maintainers: bump both URLs and SHA-256 values in `Formula/gvy.rb` together. Compare the release `checksums.txt` and GitHub asset digests, then fetch, audit, and test the formula. Until gvy’s Homebrew publishing is configured, formula updates use reviewed PRs to this tap.
 
 ### gomodfmt
 
