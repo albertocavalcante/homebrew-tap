@@ -1,0 +1,51 @@
+name: Test gvy installation
+
+on:
+  pull_request:
+    paths:
+      - Formula/gvy.rb
+      - .github/workflows/gvy.yml
+  push:
+    branches: [main]
+    paths:
+      - Formula/gvy.rb
+      - .github/workflows/gvy.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  install:
+    name: Install and test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Add Linux Homebrew to PATH
+        if: runner.os == 'Linux'
+        shell: bash
+        run: echo '/home/linuxbrew/.linuxbrew/bin' >> "$GITHUB_PATH"
+      - name: Install reviewed formula
+        shell: bash
+        run: |
+          brew tap-new --no-git gvy-ci/validation
+          cp Formula/gvy.rb "$(brew --repository gvy-ci/validation)/Formula/gvy.rb"
+          brew install --formula gvy-ci/validation/gvy
+      - name: Audit and test
+        shell: bash
+        run: |
+          brew audit --formula gvy-ci/validation/gvy
+          brew test gvy-ci/validation/gvy

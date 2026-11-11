@@ -20,19 +20,34 @@ pre-commit:
       # See: https://github.com/orgs/Homebrew/discussions/4864
       # See: https://github.com/orgs/Homebrew/discussions/4243
       run: |
-        # Create temporary tap for auditing local formulas
-        brew tap-new --no-git lefthook/audit 2>/dev/null || true
-        TAP_DIR="$(brew --repository lefthook/audit)/Formula"
-        mkdir -p "$TAP_DIR"
-        trap "brew untap lefthook/audit 2>/dev/null || true" EXIT
+        set -eu
+        audit_tap="lefthook/audit-$$"
+        auditing_formula=""
+        cleanup() {
+          if [ -n "$auditing_formula" ] && brew help untrust >/dev/null 2>&1; then
+            brew untrust --formula "$auditing_formula" >/dev/null 2>&1 || true
+          fi
+          brew untap "$audit_tap" >/dev/null 2>&1 || true
+        }
+        trap cleanup EXIT
+        brew tap-new --no-git "$audit_tap"
+        audit_formula_dir="$(brew --repository "$audit_tap")/Formula"
         exit_code=0
         for f in {staged_files}; do
           name=$(basename "$f")
           formula=$(basename "$name" .rb)
-          cp "$f" "$TAP_DIR/$name"
-          if ! brew audit --formula "lefthook/audit/$formula"; then
+          cp "$f" "$audit_formula_dir/$name"
+          auditing_formula="$audit_tap/$formula"
+          if brew help trust >/dev/null 2>&1; then
+            brew trust --formula "$auditing_formula"
+          fi
+          if ! brew audit --formula "$auditing_formula"; then
             exit_code=1
           fi
+          if brew help untrust >/dev/null 2>&1; then
+            brew untrust --formula "$auditing_formula"
+          fi
+          auditing_formula=""
         done
         exit $exit_code
 
