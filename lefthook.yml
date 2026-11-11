@@ -22,8 +22,12 @@ pre-commit:
       run: |
         set -eu
         audit_tap="lefthook/audit-$$"
+        audit_tap_created=0
         auditing_formula=""
         cleanup() {
+          if [ "$audit_tap_created" -ne 1 ]; then
+            return
+          fi
           if [ -n "$auditing_formula" ] && brew help untrust >/dev/null 2>&1; then
             brew untrust --formula "$auditing_formula" >/dev/null 2>&1 || true
           fi
@@ -31,6 +35,7 @@ pre-commit:
         }
         trap cleanup EXIT
         brew tap-new --no-git "$audit_tap"
+        audit_tap_created=1
         audit_formula_dir="$(brew --repository "$audit_tap")/Formula"
         exit_code=0
         for f in {staged_files}; do
@@ -49,7 +54,9 @@ pre-commit:
           fi
           auditing_formula=""
         done
-        exit $exit_code
+        cleanup
+        trap - EXIT
+        exit "$exit_code"
 
     workflow-lint:
       glob: ".github/workflows/*.{yml,yaml}"
