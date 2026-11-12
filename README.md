@@ -81,16 +81,38 @@ bossa --help
 
 ```bash
 brew install albertocavalcante/tap/gvy
-gvy-install-extension          # auto-detect VS Code, Cursor, or VSCodium
-gvy-install-extension cursor   # choose an editor explicitly
-gvy version                   # inspect the standalone server
+gvy-install-extension
 ```
 
-The formula installs Java 17, the standalone server, and the released VSIX. Homebrew verifies both artifact checksums; no source build or Node installation is needed. The helper installs only into the selected editor and leaves Java/editor settings unchanged. Enable the editor’s shell command if it is not on PATH.
+Homebrew installs Java 17, the server, and a checksum-verified VSIX. The server uses
+its packaged JDK even when a project sets an older `JAVA_HOME`.
 
-For another LSP client, use `gvy` as the server command (stdio). To update, run `brew update`, `brew upgrade gvy`, and `gvy-install-extension` again. Keep a previous VSIX if you need an editor rollback; uninstalling the formula does not uninstall the extension from your editor.
+The VSIX requires **VS Code API 1.144 or newer**. Cursor and VSCodium work only when
+their bundled VS Code API meets that requirement; their product version is different.
+An incompatible editor rejects installation, and the helper preserves its error.
 
-Maintainers: bump both URLs and SHA-256 values in `Formula/gvy.rb` together. Compare the release `checksums.txt` and GitHub asset digests, then fetch, audit, and test the formula. Until gvy’s Homebrew publishing is configured, formula updates use reviewed PRs to this tap.
+Choose an editor or preview the selected command:
+
+```bash
+gvy-install-extension cursor     # compatible Cursor build
+gvy-install-extension codium     # compatible VSCodium build
+gvy-install-extension --dry-run  # preview without installing
+gvy version                     # standalone server version
+```
+
+The helper uses PATH and standard macOS application locations, including
+`~/Applications`. It does not change settings or force an incompatible installation.
+For another LSP client, use `gvy` as its server command (stdio).
+
+To update, run `brew update`, `brew upgrade gvy`, and `gvy-install-extension` again.
+Uninstalling the formula does not uninstall the extension. Keep a previous VSIX for
+editor rollback.
+
+Maintainers: the release version and VS Code API requirement each have one declaration
+in `Formula/gvy.rb`. Bump both artifact hashes with the release version. Tests verify
+that the VSIX version and engine match the formula. Compare release `checksums.txt`
+and GitHub asset digests, then fetch, audit, and test the formula. Publishing automation
+is tracked in [gvy#1675](https://github.com/albertocavalcante/gvy/issues/1675).
 
 ### gomodfmt
 
@@ -168,7 +190,7 @@ Current caveat:
 
 ```bash
 # Install dev tools
-brew install dprint lefthook ghalint pinact
+brew install dprint lefthook ghalint pinact node shellcheck shfmt
 
 # Setup git hooks
 lefthook install
@@ -182,6 +204,11 @@ dprint check
 # Lint GitHub Actions workflows
 ghalint run -c tools/lint/ghalint.yaml
 pinact run --verify -c tools/lint/pinact.yaml
+
+# Check the audit helper and its failure paths
+shellcheck tools/audit-formulas.sh
+shfmt -d -i 2 tools/audit-formulas.sh
+node --test tools/test-audit-formulas.mjs
 ```
 
 ## Links

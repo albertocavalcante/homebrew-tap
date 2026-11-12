@@ -4,11 +4,17 @@ on:
   pull_request:
     paths:
       - Formula/gvy.rb
+      - lefthook.yml
+      - tools/audit-formulas.sh
+      - tools/test-audit-formulas.mjs
       - .github/workflows/gvy.yml
   push:
     branches: [main]
     paths:
       - Formula/gvy.rb
+      - lefthook.yml
+      - tools/audit-formulas.sh
+      - tools/test-audit-formulas.mjs
       - .github/workflows/gvy.yml
   workflow_dispatch:
 
@@ -38,12 +44,15 @@ jobs:
         if: runner.os == 'Linux'
         shell: bash
         run: echo '/home/linuxbrew/.linuxbrew/bin' >> "$GITHUB_PATH"
+      - name: Test audit failure paths
+        shell: bash
+        run: node --test tools/test-audit-formulas.mjs
       - name: Install reviewed formula
         shell: bash
         run: |
           brew tap-new --no-git gvy-ci/validation
           cp Formula/gvy.rb "$(brew --repository gvy-ci/validation)/Formula/gvy.rb"
-          brew install --formula gvy-ci/validation/gvy
+          brew install --include-test --formula gvy-ci/validation/gvy
       - name: Audit and test
         shell: bash
         run: |
