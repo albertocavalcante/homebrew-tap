@@ -113,6 +113,8 @@ in `Formula/gvy.rb`. Bump both artifact hashes with the release version. Tests v
 that the VSIX version and engine match the formula. Compare release `checksums.txt`
 and GitHub asset digests, then fetch, audit, and test the formula. Publishing automation
 is tracked in [gvy#1675](https://github.com/albertocavalcante/gvy/issues/1675).
+For packaging-only fixes, increment the Homebrew revision so existing installations
+upgrade; reset the revision when updating the upstream release version.
 
 ### gomodfmt
 

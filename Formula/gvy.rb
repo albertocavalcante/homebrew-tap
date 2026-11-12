@@ -7,6 +7,7 @@ class Gvy < Formula
   url "https://github.com/albertocavalcante/gvy/releases/download/v#{RELEASE_VERSION}/gls-#{RELEASE_VERSION}.jar"
   sha256 "ceda96ae2d6964faaf748df10e1f43818e06e09fb72e097d8bb44d27116f6390"
   license "Apache-2.0"
+  revision 1
 
   depends_on "unzip" => :test
   depends_on "openjdk@17"
