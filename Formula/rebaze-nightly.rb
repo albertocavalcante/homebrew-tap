@@ -11,11 +11,11 @@ class RebazeNightly < Formula
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/rebaze/releases/download/nightly/rebaze-darwin-arm64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "fe6c3f5a1db8156c33ff19550d63a4106bdf44205510b256f299821eb9aa4202"
+      sha256 "8b918219bfce9f2742ca5a259d0f10978f65f963fbe30715e164b2ee26c637f1"
     else
       url "https://github.com/albertocavalcante/rebaze/releases/download/nightly/rebaze-darwin-amd64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "c36c4070cfae1eb79d1c274c63068bffd795d63c1130aea52771548db0c8ba90"
+      sha256 "98b34d53a1ae6f808c982a28959240ced91632f8d809c19dec6b1d982c465baf"
     end
   end
 
@@ -23,11 +23,11 @@ class RebazeNightly < Formula
     if Hardware::CPU.arm?
       url "https://github.com/albertocavalcante/rebaze/releases/download/nightly/rebaze-linux-aarch64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "b9531631a3eed45edb32d1ef48509de8365de55bf2867a1944297eb66e69fa6f"
+      sha256 "05d9d81dff6db05ef3df660101a9e9fb988db6657b0b29b0664fa7570a1168d0"
     else
       url "https://github.com/albertocavalcante/rebaze/releases/download/nightly/rebaze-linux-amd64.tar.gz",
           using: GitHubPrivateRepositoryReleaseDownloadStrategy
-      sha256 "5135abd2d8c1333f2ca9bd519f864944c0c250f03cd675a5ec04a868c7559559"
+      sha256 "271ded2adec1595665e76ad4d5c9de871df5595a918e3f6595cd51c9fd7751db"
     end
   end
 
